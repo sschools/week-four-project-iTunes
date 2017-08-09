@@ -7,10 +7,12 @@ let musicPlayer = document.querySelector(".music-player");
 let searchForm = document.querySelector("form");
 let container = document.querySelector(".results");
 let searchText;
+let html;
 
 searchForm.addEventListener("submit", getSearch);
 
 function getSearch(event) {
+  html = "";
   event.preventDefault();
   searchText = event.target.querySelector("input").value;
   event.target.querySelector("input").value = "";
@@ -22,6 +24,20 @@ function collectData(artist) {
   .then (function(response){
     return response.json();
   }).then (function(data) {
-    console.log(data);;
+    console.log(data);
+    container.innerHTML = songsToDom(data);
   });
+}
+
+function songsToDom(songs) {
+  for (let i = 0; i < songs.results.length; i++) {
+    let currentSong = songs.results[i];
+    html += `
+    <div class="song-container">
+      <h5>${currentSong.artistName}</h5>
+      <h6>${currentSong.trackName}</h6>
+    </div>
+  `
+  }
+  return html;
 }
