@@ -3,6 +3,19 @@
 // 3. Create your `fetch` request that is called after a submission
 // 4. Create a way to append the fetch results to your page
 // 5. Create a way to listen for a click that will play the song in the audio play
-let musicPlayer = document.querySelecor(".music-player");
-let searchForm = document.querySelecor(".search-form");
-let container = document.querySelecor(".results");
+let musicPlayer = document.querySelector(".music-player");
+let searchForm = document.querySelector("form");
+let container = document.querySelector(".results");
+let searchText;
+
+searchForm.addEventListener("submit", getSearch);
+
+function getSearch(event) {
+  event.preventDefault();
+  searchText = event.target.querySelector("input").value;
+  collectData(searchText);
+};
+
+function collectData(artist) {
+  
+}
