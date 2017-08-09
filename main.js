@@ -34,6 +34,7 @@ function songsToDom(songs) {
     let currentSong = songs.results[i];
     html += `
     <div class="song-container">
+      <img src="${currentSong.artworkUrl100}"/>
       <h5>${currentSong.artistName}</h5>
       <h6>${currentSong.trackName}</h6>
     </div>
