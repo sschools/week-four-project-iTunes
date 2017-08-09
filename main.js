@@ -8,6 +8,7 @@ let searchForm = document.querySelector("form");
 let container = document.querySelector(".results");
 let searchText;
 let html;
+let currentSongPreview;
 
 searchForm.addEventListener("submit", getSearch);
 container.addEventListener("click", playSong);
@@ -35,7 +36,7 @@ function songsToDom(songs) {
   for (let i = 0; i < songs.results.length; i++) {
     let currentSong = songs.results[i];
     html += `
-    <div class="song-container" id="${currentSong.trackName}">
+    <div class="song-container" id="${currentSong.trackName}" name="${currentSong.previewUrl}">
       <img src="${currentSong.artworkUrl100}"/>
       <h5>${currentSong.artistName}</h5>
       <h6>${currentSong.trackName}</h6>
@@ -56,6 +57,10 @@ function playSong() {
       divClicked = event.target.parentElement;
     }
     divId = divClicked.id;
+    divUrl = divClicked.getAttribute("name");
+    musicPlayer.setAttribute("src", divUrl);
+    console.log(divId);
+
   }
-  console.log(divId);
+
 }
