@@ -13,9 +13,15 @@ searchForm.addEventListener("submit", getSearch);
 function getSearch(event) {
   event.preventDefault();
   searchText = event.target.querySelector("input").value;
+  event.target.querySelector("input").value = "";
   collectData(searchText);
 };
 
 function collectData(artist) {
-  
+  return fetch("https://itunes.apple.com/search?term=" + artist+ "&limit=20&media=music")
+  .then (function(response){
+    return response.json();
+  }).then (function(data) {
+    console.log(data);;
+  });
 }
