@@ -10,6 +10,7 @@ let searchText;
 let html;
 
 searchForm.addEventListener("submit", getSearch);
+container.addEventListener("click", playSong);
 
 function getSearch(event) {
   html = "";
@@ -26,6 +27,7 @@ function collectData(artist) {
   }).then (function(data) {
     console.log(data);
     container.innerHTML = songsToDom(data);
+
   });
 }
 
@@ -33,7 +35,7 @@ function songsToDom(songs) {
   for (let i = 0; i < songs.results.length; i++) {
     let currentSong = songs.results[i];
     html += `
-    <div class="song-container">
+    <div class="song-container" id="${currentSong.trackName}">
       <img src="${currentSong.artworkUrl100}"/>
       <h5>${currentSong.artistName}</h5>
       <h6>${currentSong.trackName}</h6>
@@ -41,4 +43,19 @@ function songsToDom(songs) {
   `
   }
   return html;
+}
+
+function playSong() {
+  let divClicked;
+  let divId;
+  clickedClass = event.target.getAttribute("class");
+  if (clickedClass !== "results") {
+    if (clickedClass === "song-container") {
+      divClicked = event.target;
+    } else {
+      divClicked = event.target.parentElement;
+    }
+    divId = divClicked.id;
+  }
+  console.log(divId);
 }
