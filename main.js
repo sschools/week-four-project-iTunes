@@ -33,6 +33,7 @@ function collectData(artist) {
 }
 
 function songsToDom(songs) {
+  html = `<h3>Search Results: Click a Song for a Preview</h3><br>`
   for (let i = 0; i < songs.results.length; i++) {
     let currentSong = songs.results[i];
     html += `
