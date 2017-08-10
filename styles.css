@@ -1,5 +1,6 @@
 body {
   background-image: url(records.jpg);
+  background-attachment: fixed;
 }
 
 header {
